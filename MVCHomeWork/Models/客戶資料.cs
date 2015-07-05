@@ -11,7 +11,6 @@ namespace MVCHomeWork.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶資料
     {
@@ -22,20 +21,13 @@ namespace MVCHomeWork.Models
         }
     
         public int Id { get; set; }
-        [Required]
         public string 客戶名稱 { get; set; }
-        [Required]
-        [MaxLength(8)]
         public string 統一編號 { get; set; }
-        [Required]
         public string 電話 { get; set; }
-        [Required]
         public string 傳真 { get; set; }
-        [Required]
         public string 地址 { get; set; }
-        [Required]
-        [EmailAddress]
         public string Email { get; set; }
+        public Nullable<bool> 是否已刪除 { get; set; }
     
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }
