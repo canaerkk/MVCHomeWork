@@ -58,10 +58,9 @@
 警告 6002: 資料表/檢視 'C:\USERS\PAISLEY\DOCUMENTS\GITHUB\MVCHOMEWORK\MVCHOMEWORK\APP_DATA\客戶資料.MDF.dbo.View_1' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="View_1">
           <Key>
-            <PropertyRef Name="Expr1" />
-            <PropertyRef Name="客戶名稱" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Expr1" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="統計銀行數" Type="int" />
           <Property Name="統計聯絡人數" Type="int" />
@@ -97,7 +96,7 @@
           <EntitySet Name="客戶聯絡人" EntityType="Self.客戶聯絡人" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [View_1].[Expr1] AS [Expr1], 
+    [View_1].[Id] AS [Id], 
     [View_1].[客戶名稱] AS [客戶名稱], 
     [View_1].[統計銀行數] AS [統計銀行數], 
     [View_1].[統計聯絡人數] AS [統計聯絡人數]
@@ -211,14 +210,11 @@
         <EntityType Name="View_1">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="客戶名稱" />
-            <PropertyRef Name="Expr1" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="客戶名稱" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="統計銀行數" Type="Int32" />
           <Property Name="統計聯絡人數" Type="Int32" />
-          <Property Name="Expr1" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -282,10 +278,10 @@
           <EntitySetMapping Name="View_1">
             <EntityTypeMapping TypeName="客戶資料Model.View_1">
               <MappingFragment StoreEntitySet="View_1">
-                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
                 <ScalarProperty Name="統計聯絡人數" ColumnName="統計聯絡人數" />
                 <ScalarProperty Name="統計銀行數" ColumnName="統計銀行數" />
                 <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
