@@ -62,7 +62,7 @@
                 @Html.ValidationMessageFor(model => model.帳戶號碼, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        @Html.HiddenFor(model => model.是否已刪除, new { @Value="False"})
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
