@@ -12,7 +12,8 @@ namespace MVCHomeWork.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+    using System.Web.Mvc;
+
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
@@ -23,13 +24,17 @@ namespace MVCHomeWork.Models
         public string 姓名 { get; set; }
         [Required]
         [EmailAddress]
+        [Remote("CheckEmail","Validate",AdditionalFields="客戶Id",ErrorMessage="客戶下已有此Email")]
         public string Email { get; set; }
         [Required]
         [RegularExpression("\\d{4}-\\d{6}")]
         public string 手機 { get; set; }
         public string 電話 { get; set; }
         public Nullable<bool> 是否已刪除 { get; set; }
-    
+
         public virtual 客戶資料 客戶資料 { get; set; }
     }
+
 }
+
+
