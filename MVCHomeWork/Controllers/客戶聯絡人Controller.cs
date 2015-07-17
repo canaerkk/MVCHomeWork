@@ -12,16 +12,14 @@ namespace MVCHomeWork.Controllers
 {
     public class 客戶聯絡人Controller : Controller
     {
-        private 客戶資料Entities db = new 客戶資料Entities();
+        客戶聯絡人Repository Repo = RepositoryHelper.Get客戶聯絡人Repository();
+        //private 客戶資料Entities db = new 客戶資料Entities();
 
         // GET: 客戶聯絡人
         public ActionResult Index()
         {
-            var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料);
-            var query = (from p in 客戶聯絡人
-                         where p.是否已刪除 == false
-                         select p);
-            return View(query.ToList());
+            var data = Repo.All().ToList();
+            return View(data);
         }
 
         // GET: 客戶聯絡人/Details/5
@@ -31,7 +29,7 @@ namespace MVCHomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
+            客戶聯絡人 客戶聯絡人 = Repo.Find(id.Value);
             if (客戶聯絡人 == null)
             {
                 return HttpNotFound();
@@ -42,7 +40,7 @@ namespace MVCHomeWork.Controllers
         // GET: 客戶聯絡人/Create
         public ActionResult Create()
         {
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
+
             return View();
         }
 
@@ -55,13 +53,11 @@ namespace MVCHomeWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                db.客戶聯絡人.Add(客戶聯絡人);
-                db.SaveChanges();
+                Repo.Add(客戶聯絡人);
+                Repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
@@ -72,12 +68,12 @@ namespace MVCHomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
+            客戶聯絡人 客戶聯絡人 = Repo.Find(id.Value);
+
             if (客戶聯絡人 == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
@@ -90,11 +86,12 @@ namespace MVCHomeWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(客戶聯絡人).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(客戶聯絡人).State = EntityState.Modified;
+                //db.SaveChanges();
+                ((客戶資料Entities)Repo.UnitOfWork.Context).Entry(客戶聯絡人).State = EntityState.Modified;
+                Repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
