@@ -11,28 +11,18 @@ namespace MVCHomeWork.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
         public int 客戶Id { get; set; }
-        [Required]
         public string 職稱 { get; set; }
-        [Required]
         public string 姓名 { get; set; }
-        [Required]
-        [EmailAddress]
         public string Email { get; set; }
-        [Required]
         public string 手機 { get; set; }
         public string 電話 { get; set; }
         public Nullable<bool> 是否已刪除 { get; set; }
-
+    
         public virtual 客戶資料 客戶資料 { get; set; }
     }
-
 }
-
-

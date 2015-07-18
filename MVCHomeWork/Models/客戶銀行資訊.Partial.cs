@@ -19,9 +19,13 @@ namespace MVCHomeWork.Models
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
         [Required]
         public string 銀行名稱 { get; set; }
+        
+        [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
         [Required]
-        public int 銀行代碼 { get; set; }
-        public Nullable<int> 分行代碼 { get; set; }
+        public string 銀行代碼 { get; set; }
+        
+        [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
+        public string 分行代碼 { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
         [Required]

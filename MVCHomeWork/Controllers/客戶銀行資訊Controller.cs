@@ -10,7 +10,7 @@ using MVCHomeWork.Models;
 
 namespace MVCHomeWork.Controllers
 {
-    public class 客戶銀行資訊Controller : Controller
+    public class 客戶銀行資訊Controller :BaseController
     {
         private 客戶資料Entities db = new 客戶資料Entities();
 
@@ -18,10 +18,7 @@ namespace MVCHomeWork.Controllers
         public ActionResult Index()
         {
             var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料);
-            var query = (from p in 客戶銀行資訊
-                         where p.是否已刪除 == false
-                         select p);
-            return View(query.ToList());
+            return View(客戶銀行資訊.ToList());
         }
 
         // GET: 客戶銀行資訊/Details/5
@@ -85,7 +82,7 @@ namespace MVCHomeWork.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,客戶Id,銀行名稱,銀行代碼,分行代碼,帳戶名稱,帳戶號碼")] 客戶銀行資訊 客戶銀行資訊)
+        public ActionResult Edit([Bind(Include = "Id,客戶Id,銀行名稱,銀行代碼,分行代碼,帳戶名稱,帳戶號碼,是否已刪除")] 客戶銀行資訊 客戶銀行資訊)
         {
             if (ModelState.IsValid)
             {
@@ -118,8 +115,7 @@ namespace MVCHomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶銀行資訊 客戶銀行資訊 = db.客戶銀行資訊.Find(id);
-            //db.客戶銀行資訊.Remove(客戶銀行資訊);
-            客戶銀行資訊.是否已刪除 = true;
+            db.客戶銀行資訊.Remove(客戶銀行資訊);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

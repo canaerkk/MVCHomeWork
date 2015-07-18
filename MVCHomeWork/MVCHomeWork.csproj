@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libTUIO">
+      <HintPath>..\packages\libTUIO11.1.1.5\lib\libTUIO.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -171,10 +174,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Controllers\View_1Controller.cs" />
     <Compile Include="Controllers\客戶聯絡人Controller.cs" />
     <Compile Include="Controllers\客戶資料Controller.cs" />
@@ -286,6 +288,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Models\EFGeneratePartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\IRepository.EF6.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
+    </Content>
     <EntityDeploy Include="Models\客戶資料.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>客戶資料.Designer.cs</LastGenOutput>
@@ -302,14 +312,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>客戶資料.edmx</DependentUpon>
       <LastGenOutput>客戶資料1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\EFGeneratePartialClass.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\IRepository.EF6.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IRepository.EF6.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -385,6 +387,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Validate\" />
   </ItemGroup>
   <PropertyGroup>

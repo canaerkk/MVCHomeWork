@@ -7,12 +7,9 @@ using MVCHomeWork.Models;
 
 namespace MVCHomeWork.Controllers
 {
-    public class View_1Controller : BaseController
+    public abstract class BaseController : Controller
     {
-        // GET: View_1
-        public ActionResult Index()
-        {
-            return View();
-        }
+        protected 客戶資料Entities db = new 客戶資料Entities();
+
     }
 }
